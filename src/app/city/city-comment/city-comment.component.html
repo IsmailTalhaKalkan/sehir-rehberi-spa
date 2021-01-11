@@ -1,0 +1,89 @@
+<!-- <div class="container">
+  <div class="card">
+    <div class="commentbox">
+      <div class="col-12 col-sm-12 header">
+        <h4>Comments ({{ count }})</h4>
+      </div>
+      <div class="col-12 col-sm-12 body">
+        <div class="comment-container">
+          <div class="comment-form">
+            <app-commentbox
+              (usercomment)="receiveComment($event)"
+            ></app-commentbox>
+          </div>
+        </div>
+      </div>
+    </div>
+    <app-comments
+      [postComment]="comments"
+      (countComments)="recieveCount($event)"
+    ></app-comments>
+  </div>
+</div> -->
+
+<form [formGroup]="commentForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <textarea
+      class="form-control"
+      placeholder="Leave a comment"
+      formControlName="comment"
+      [ngClass]="{
+        'is-invalid': submitted && commentForm.controls['comment'].errors
+      }"
+      ([ngModel])="(inputC)"
+    ></textarea>
+    <div
+      class="invalid-feedback"
+      *ngIf="submitted && commentForm.controls['comment'].errors"
+    >
+      <div *ngIf="commentForm.controls['comment'].errors.required">
+        Comment is required
+      </div>
+      <div *ngIf="commentForm.controls['comment'].errors.minlength">
+        Comment must be at least 6 characters
+      </div>
+      <div *ngIf="commentForm.controls['comment'].errors.maxlength">
+        Comment must be at most 100 characters
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <button type="submit" class="btn btn-success">Post Comment</button>
+  </div>
+</form>
+<div class="container">
+  <div class="card">
+    <div class="commentbox">
+      <div class="col-12 col-sm-12 header"><h4>Comments</h4></div>
+      <div class="col-12 col-sm-12 body">
+        <div class="comment-container">
+          <div class="comment-form">
+            <!-- *ngFor="let c of ob" -->
+            <div class="comments">
+              <ul>
+                <li *ngFor="let post of ob">
+                  <div class="col-12 col-sm-12 comment-container">
+                    <p>{{ post.commentDetail }}</p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <!-- <div class="comments">
+              <ul *ngIf="ob?.length > 0">
+                <li *ngFor="let post of ob">
+                  <div class="col-12 col-sm-12 comment-container">
+                    <p>{{ post.commentDetail }}</p>
+                    <div class="actions">
+                      <span class="divider"></span>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div> -->
+            <!-- <app-commentbox (usercomment)="receiveComment($event)"></app-commentbox></div></div></div></div><app-comments [postComment]="comments" (countComments)="recieveCount($event)"></app-comments> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
