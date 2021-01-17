@@ -1,4 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { RatingService } from "../services/rating.service";
+import { TSMap } from "typescript-map";
+import { RatingForCity } from "../models/ratingForCity";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "app-rating",
@@ -6,19 +10,29 @@ import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
   styleUrls: ["./rating.component.css"],
 })
 export class RatingComponent implements OnInit {
-  @Input() rating: number;
-  @Input() itemId: number;
+  currentCityID: any;
+  rate: RatingForCity;
+  arr = ["Transportation", "Food", "View", "Price"];
+  @Output() rating: number;
+  @Input() categories: string;
+  @Output() categoriesGet: EventEmitter<any> = new EventEmitter<any>();
   @Output() ratingClick: EventEmitter<any> = new EventEmitter<any>();
-  constructor() {}
+  constructor(
+    private ratingService: RatingService,
+    private activatedRoute: ActivatedRoute
+  ) {}
 
-  ngOnInit() {}
-
-  onClick(rating: number): void {
-    this.rating = rating;
-    this.ratingClick.emit({
-      itemId: this.itemId,
-      rating: rating,
+  ngOnInit() {
+    this.activatedRoute.params.subscribe((params) => {
+      this.currentCityID = params["cityId"];
     });
-    console.log(rating);
+  }
+
+  onClick(rating: any, name: any): void {
+    this.ratingClick.emit({
+      rating: rating,
+      name: this.categories,
+    });
+    console.log(rating, name);
   }
 }

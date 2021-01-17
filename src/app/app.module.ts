@@ -18,7 +18,7 @@ import { CityAddComponent } from "./city/city-add/city-add.component";
 import { AlertifyService } from "./services/alertify.service";
 import { RegisterComponent } from "./register/register.component";
 import { PhotoComponent } from "./photo/photo.component";
-import { CityRatingComponent } from "./city/city-rating/city-rating.component";
+
 import { CityCommentComponent } from "./city/city-comment/city-comment.component";
 
 import { CommentPipe } from "./comment.pipe";

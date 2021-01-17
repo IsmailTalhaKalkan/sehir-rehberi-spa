@@ -19,7 +19,6 @@ import { RatingForCity } from "src/app/models/ratingForCity";
   providers: [CityService],
 })
 export class CityDetailComponent implements OnInit {
-  s = ["Ulaşım", "Yemek", "Görünüm", "Ücret"];
   constructor(
     private activatedRoute: ActivatedRoute,
     private cityService: CityService,

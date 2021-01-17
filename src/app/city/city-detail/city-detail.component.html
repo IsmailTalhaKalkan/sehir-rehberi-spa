@@ -13,12 +13,7 @@
       <div [innerHTML]="city.description"></div>
     </div>
   </div>
-  <tr *ngFor="let c of s">
-    <app-rating></app-rating>
-    <td>
-      <b>{{ c }}</b>
-    </td>
-  </tr>
+  <app-rating></app-rating>
 </main>
 <app-photo></app-photo>
 <div class="container">
